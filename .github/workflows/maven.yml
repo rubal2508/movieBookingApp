@@ -32,17 +32,17 @@ jobs:
     - name: Login to docker hub
       run: docker login -u ${{secrets.DOCKER_USERNAME}} -p ${{secrets.DOCKER_PASSWORD}}
     - name: Build docker image
-      run: docker build -t o9588375/movieBookingApp .
+      run: docker build -t o9588375/movie-booking-app .
     - name: Publish image to docker hub
-      run: docker push o9588375/movieBookingApp:latest
+      run: docker push o9588375/movie-booking-app:latest
 
   deploy:
     needs: build
     runs-on: [aws-ec2]
     steps:
       - name: Pull Image from docker hub
-        run: docker pull o9588375/movieBookingApp:latest
+        run: docker pull o9588375/movie-booking-app:latest
       - name: Delete old container
-        run: docker rm -f movieBookingApp
+        run: docker rm -f movie-booking-app-container
       - name: Run docker container
-        run: docker run -d -p 8080:8080 --name movieBookingApp o9588375/movieBookingApp
+        run: docker run -d -p 8080:8080 --name movie-booking-app-container o9588375/movie-booking-app
