@@ -45,4 +45,4 @@ jobs:
       - name: Delete old container
         run: docker rm -f movie-booking-app-container
       - name: Run docker container
-        run: docker run -v /home/ec2-user/vmoptions.txt -e "JAVA_TOOL_OPTIONS=@/vmoptions.txt" -d -p 8080:8080 --name movie-booking-app-container o9588375/movie-booking-app
+        run: docker run -e "JAVA_TOOL_OPTIONS=-Dspring.datasource.password=${{secrets.AZURE_SQL_PASSWORD}}" -d -p 8080:8080 --name movie-booking-app-container o9588375/movie-booking-app
