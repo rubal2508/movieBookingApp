@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:sqlserver://amangargserver.database.windows.net:1433;database=movieBookingDatabase;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;
+    username: amangargserver
+    password: wrong-password
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+      dialect : org.hibernate.dialect.SQLServer2012Dialect
+
+server:
+  port: 8080
